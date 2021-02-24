@@ -15,9 +15,9 @@ final class Store
 
     /**
      * @param \BolCom\RetailerApi\Model\Offer\Title $productTitle
-     * @param \BolCom\RetailerApi\Model\Offer\CountryCode[] $visible
+     * @param \BolCom\RetailerApi\Model\Offer\CountryCode[]|null $visible
      */
-    public function __construct(Title $productTitle, array $visible = null)
+    public function __construct(Title $productTitle, ?array $visible)
     {
         $this->productTitle = $productTitle;
         if ($visible !== null) {
@@ -39,7 +39,7 @@ final class Store
     /**
      * @return \BolCom\RetailerApi\Model\Offer\CountryCode[]|null
      */
-    public function visible()
+    public function visible(): ?array
     {
         return $this->visible;
     }
@@ -50,10 +50,10 @@ final class Store
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Offer\CountryCode[] $visible
+     * @param \BolCom\RetailerApi\Model\Offer\CountryCode[]|null $visible
      * @return \BolCom\RetailerApi\Model\Offer\Store
      */
-    public function withVisible(array $visible = null): Store
+    public function withVisible(?array $visible): Store
     {
         return new self($this->productTitle, $visible);
     }
@@ -71,15 +71,7 @@ final class Store
                 throw new \InvalidArgumentException("Value for 'visible' is not an array in data array");
             }
 
-            $visible = [];
-
-            foreach ($data['visible'] as $__value) {
-                if (! \is_array($data['visible'])) {
-                    throw new \InvalidArgumentException("Key 'visible' in data array or is not an array of arrays");
-                }
-
-                $visible[] = CountryCode::fromArray($__value);
-            }
+            $visible = CountryCode::fromArray($data['visible']);
         } else {
             $visible = null;
         }

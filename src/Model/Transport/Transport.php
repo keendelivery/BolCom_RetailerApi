@@ -14,7 +14,7 @@ final class Transport
     private $transporterCode;
     private $trackAndTrace;
 
-    public function __construct(TransportId $transportId, TransporterCode $transporterCode, TrackAndTrace $trackAndTrace = null)
+    public function __construct(TransportId $transportId, TransporterCode $transporterCode, ?TrackAndTrace $trackAndTrace)
     {
         $this->transportId = $transportId;
         $this->transporterCode = $transporterCode;
@@ -31,7 +31,7 @@ final class Transport
         return $this->transporterCode;
     }
 
-    public function trackAndTrace()
+    public function trackAndTrace(): ?TrackAndTrace
     {
         return $this->trackAndTrace;
     }
@@ -46,7 +46,7 @@ final class Transport
         return new self($this->transportId, $transporterCode, $this->trackAndTrace);
     }
 
-    public function withTrackAndTrace(TrackAndTrace $trackAndTrace = null): Transport
+    public function withTrackAndTrace(?TrackAndTrace $trackAndTrace): Transport
     {
         return new self($this->transportId, $this->transporterCode, $trackAndTrace);
     }

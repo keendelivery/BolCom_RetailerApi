@@ -10,13 +10,13 @@ namespace BolCom\RetailerApi\Model\Offer;
 
 final class FulfilmentMethod
 {
-    const OPTIONS = [
+    public const OPTIONS = [
         'FBR' => 'FBR',
         'FBB' => 'FBB',
     ];
 
-    const FBR = 'FBR';
-    const FBB = 'FBB';
+    public const FBR = 'FBR';
+    public const FBB = 'FBB';
 
     private $name;
     private $value;

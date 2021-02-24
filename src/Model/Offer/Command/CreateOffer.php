@@ -12,7 +12,7 @@ final class CreateOffer extends \Prooph\Common\Messaging\Command
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Offer\Command\CreateOffer';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Offer\Command\CreateOffer';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -28,7 +28,7 @@ final class CreateOffer extends \Prooph\Common\Messaging\Command
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['retailerOffer']) || ! \is_array($payload['retailerOffer'])) {
             throw new \InvalidArgumentException("Key 'retailerOffer' is missing in payload or is not an array");

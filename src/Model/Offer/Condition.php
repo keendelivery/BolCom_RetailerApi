@@ -10,7 +10,7 @@ namespace BolCom\RetailerApi\Model\Offer;
 
 final class Condition
 {
-    const OPTIONS = [
+    public const OPTIONS = [
         'IS_NEW' => 'NEW',
         'AS_NEW' => 'AS_NEW',
         'GOOD' => 'GOOD',
@@ -19,12 +19,12 @@ final class Condition
         'UNKNOWN' => 'UNKNOWN',
     ];
 
-    const IS_NEW = 'NEW';
-    const AS_NEW = 'AS_NEW';
-    const GOOD = 'GOOD';
-    const REASONABLE = 'REASONABLE';
-    const MODERATE = 'MODERATE';
-    const UNKNOWN = 'UNKNOWN';
+    public const IS_NEW = 'NEW';
+    public const AS_NEW = 'AS_NEW';
+    public const GOOD = 'GOOD';
+    public const REASONABLE = 'REASONABLE';
+    public const MODERATE = 'MODERATE';
+    public const UNKNOWN = 'UNKNOWN';
 
     private $name;
     private $value;

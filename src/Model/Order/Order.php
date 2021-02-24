@@ -19,7 +19,7 @@ final class Order
      * @param \BolCom\RetailerApi\Model\Order\OrderId $orderId
      * @param \BolCom\RetailerApi\Model\DateTime $dateTimeOrderPlaced
      * @param \BolCom\RetailerApi\Model\Order\OrderCustomerDetails $customerDetails
-     * @param \BolCom\RetailerApi\Model\Order\OrderItem[]|null $orderItems
+     * @param \BolCom\RetailerApi\Model\Order\OrderItem[] $orderItems
      */
     public function __construct(OrderId $orderId, \BolCom\RetailerApi\Model\DateTime $dateTimeOrderPlaced, OrderCustomerDetails $customerDetails, array $orderItems)
     {
@@ -74,7 +74,7 @@ final class Order
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Order\OrderItem[]|null $orderItems
+     * @param \BolCom\RetailerApi\Model\Order\OrderItem[] $orderItems
      * @return \BolCom\RetailerApi\Model\Order\Order
      */
     public function withOrderItems(array $orderItems): Order

@@ -23,7 +23,7 @@ final class ReducedReturnItem
     private $processingResult;
     private $processingDateTime;
 
-    public function __construct(RmaId $rmaId, \BolCom\RetailerApi\Model\Order\OrderId $orderId, \BolCom\RetailerApi\Model\Offer\Ean $ean, int $quantity, \BolCom\RetailerApi\Model\DateTime $registrationDateTime, string $returnReason = null, string $returnReasonComments = null, \BolCom\RetailerApi\Model\Offer\FulfilmentMethod $fulfilmentMethod, bool $handled, HandlingResult $handlingResult = null, ProcessingResult $processingResult = null, \BolCom\RetailerApi\Model\DateTime $processingDateTime = null)
+    public function __construct(RmaId $rmaId, \BolCom\RetailerApi\Model\Order\OrderId $orderId, \BolCom\RetailerApi\Model\Offer\Ean $ean, int $quantity, \BolCom\RetailerApi\Model\DateTime $registrationDateTime, ?string $returnReason, ?string $returnReasonComments, \BolCom\RetailerApi\Model\Offer\FulfilmentMethod $fulfilmentMethod, bool $handled, ?HandlingResult $handlingResult, ?ProcessingResult $processingResult, ?\BolCom\RetailerApi\Model\DateTime $processingDateTime)
     {
         $this->rmaId = $rmaId;
         $this->orderId = $orderId;
@@ -64,12 +64,12 @@ final class ReducedReturnItem
         return $this->registrationDateTime;
     }
 
-    public function returnReason()
+    public function returnReason(): ?string
     {
         return $this->returnReason;
     }
 
-    public function returnReasonComments()
+    public function returnReasonComments(): ?string
     {
         return $this->returnReasonComments;
     }
@@ -84,17 +84,17 @@ final class ReducedReturnItem
         return $this->handled;
     }
 
-    public function handlingResult()
+    public function handlingResult(): ?HandlingResult
     {
         return $this->handlingResult;
     }
 
-    public function processingResult()
+    public function processingResult(): ?ProcessingResult
     {
         return $this->processingResult;
     }
 
-    public function processingDateTime()
+    public function processingDateTime(): ?\BolCom\RetailerApi\Model\DateTime
     {
         return $this->processingDateTime;
     }
@@ -124,12 +124,12 @@ final class ReducedReturnItem
         return new self($this->rmaId, $this->orderId, $this->ean, $this->quantity, $registrationDateTime, $this->returnReason, $this->returnReasonComments, $this->fulfilmentMethod, $this->handled, $this->handlingResult, $this->processingResult, $this->processingDateTime);
     }
 
-    public function withReturnReason(string $returnReason = null): ReducedReturnItem
+    public function withReturnReason(?string $returnReason): ReducedReturnItem
     {
         return new self($this->rmaId, $this->orderId, $this->ean, $this->quantity, $this->registrationDateTime, $returnReason, $this->returnReasonComments, $this->fulfilmentMethod, $this->handled, $this->handlingResult, $this->processingResult, $this->processingDateTime);
     }
 
-    public function withReturnReasonComments(string $returnReasonComments = null): ReducedReturnItem
+    public function withReturnReasonComments(?string $returnReasonComments): ReducedReturnItem
     {
         return new self($this->rmaId, $this->orderId, $this->ean, $this->quantity, $this->registrationDateTime, $this->returnReason, $returnReasonComments, $this->fulfilmentMethod, $this->handled, $this->handlingResult, $this->processingResult, $this->processingDateTime);
     }
@@ -144,17 +144,17 @@ final class ReducedReturnItem
         return new self($this->rmaId, $this->orderId, $this->ean, $this->quantity, $this->registrationDateTime, $this->returnReason, $this->returnReasonComments, $this->fulfilmentMethod, $handled, $this->handlingResult, $this->processingResult, $this->processingDateTime);
     }
 
-    public function withHandlingResult(HandlingResult $handlingResult = null): ReducedReturnItem
+    public function withHandlingResult(?HandlingResult $handlingResult): ReducedReturnItem
     {
         return new self($this->rmaId, $this->orderId, $this->ean, $this->quantity, $this->registrationDateTime, $this->returnReason, $this->returnReasonComments, $this->fulfilmentMethod, $this->handled, $handlingResult, $this->processingResult, $this->processingDateTime);
     }
 
-    public function withProcessingResult(ProcessingResult $processingResult = null): ReducedReturnItem
+    public function withProcessingResult(?ProcessingResult $processingResult): ReducedReturnItem
     {
         return new self($this->rmaId, $this->orderId, $this->ean, $this->quantity, $this->registrationDateTime, $this->returnReason, $this->returnReasonComments, $this->fulfilmentMethod, $this->handled, $this->handlingResult, $processingResult, $this->processingDateTime);
     }
 
-    public function withProcessingDateTime(\BolCom\RetailerApi\Model\DateTime $processingDateTime = null): ReducedReturnItem
+    public function withProcessingDateTime(?\BolCom\RetailerApi\Model\DateTime $processingDateTime): ReducedReturnItem
     {
         return new self($this->rmaId, $this->orderId, $this->ean, $this->quantity, $this->registrationDateTime, $this->returnReason, $this->returnReasonComments, $this->fulfilmentMethod, $this->handled, $this->handlingResult, $this->processingResult, $processingDateTime);
     }

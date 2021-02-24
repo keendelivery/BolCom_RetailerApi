@@ -13,7 +13,7 @@ final class Pricing
     private $bundlePrices;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Offer\BundlePrice[]|null $bundlePrices
+     * @param \BolCom\RetailerApi\Model\Offer\BundlePrice[] $bundlePrices
      */
     public function __construct(BundlePrice ...$bundlePrices)
     {
@@ -29,7 +29,7 @@ final class Pricing
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Offer\BundlePrice[]|null $bundlePrices
+     * @param \BolCom\RetailerApi\Model\Offer\BundlePrice[] $bundlePrices
      * @return \BolCom\RetailerApi\Model\Offer\Pricing
      */
     public function withBundlePrices(array $bundlePrices): Pricing

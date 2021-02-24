@@ -10,13 +10,13 @@ namespace BolCom\RetailerApi\Model\Offer;
 
 final class ConditionCategory
 {
-    const OPTIONS = [
+    public const OPTIONS = [
         'IS_NEW' => 'NEW',
         'SECONDHAND' => 'SECONDHAND',
     ];
 
-    const IS_NEW = 'NEW';
-    const SECONDHAND = 'SECONDHAND';
+    public const IS_NEW = 'NEW';
+    public const SECONDHAND = 'SECONDHAND';
 
     private $name;
     private $value;

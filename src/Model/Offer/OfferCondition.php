@@ -14,7 +14,7 @@ final class OfferCondition
     private $category;
     private $comment;
 
-    public function __construct(Condition $name, ConditionCategory $category = null, ConditionComment $comment = null)
+    public function __construct(Condition $name, ?ConditionCategory $category, ?ConditionComment $comment)
     {
         $this->name = $name;
         $this->category = $category;
@@ -26,12 +26,12 @@ final class OfferCondition
         return $this->name;
     }
 
-    public function category()
+    public function category(): ?ConditionCategory
     {
         return $this->category;
     }
 
-    public function comment()
+    public function comment(): ?ConditionComment
     {
         return $this->comment;
     }
@@ -41,12 +41,12 @@ final class OfferCondition
         return new self($name, $this->category, $this->comment);
     }
 
-    public function withCategory(ConditionCategory $category = null): OfferCondition
+    public function withCategory(?ConditionCategory $category): OfferCondition
     {
         return new self($this->name, $category, $this->comment);
     }
 
-    public function withComment(ConditionComment $comment = null): OfferCondition
+    public function withComment(?ConditionComment $comment): OfferCondition
     {
         return new self($this->name, $this->category, $comment);
     }
@@ -91,7 +91,7 @@ final class OfferCondition
         return [
             'name' => $this->name->value(),
             'category' => null === $this->category ? null : $this->category->value(),
-            'comment' => null === $this->comment ? null : $this->comment->toString(),
+            'comment' => null === $this->comment ? null : null === $this->comment ? null : $this->comment->toString(),
         ];
     }
 }

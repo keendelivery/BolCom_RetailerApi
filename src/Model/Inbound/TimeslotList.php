@@ -13,7 +13,7 @@ final class TimeslotList
     private $timeslot;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inbound\Timeslot[]|null $timeslot
+     * @param \BolCom\RetailerApi\Model\Inbound\Timeslot[] $timeslot
      */
     public function __construct(Timeslot ...$timeslot)
     {
@@ -29,7 +29,7 @@ final class TimeslotList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inbound\Timeslot[]|null $timeslot
+     * @param \BolCom\RetailerApi\Model\Inbound\Timeslot[] $timeslot
      * @return \BolCom\RetailerApi\Model\Inbound\TimeslotList
      */
     public function withTimeslot(array $timeslot): TimeslotList

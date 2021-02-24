@@ -12,11 +12,11 @@ final class GetLatestReductionsFilename extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Reduction\Query\GetLatestReductionsFilename';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Reduction\Query\GetLatestReductionsFilename';
 
     protected $messageName = self::MESSAGE_NAME;
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         $this->payload = $payload;
     }

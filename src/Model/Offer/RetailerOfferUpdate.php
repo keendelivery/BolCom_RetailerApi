@@ -15,7 +15,7 @@ final class RetailerOfferUpdate
     private $unknownProductTitle;
     private $fulfilment;
 
-    public function __construct(ReferenceCode $referenceCode = null, bool $onHoldByRetailer, Title $unknownProductTitle = null, Fulfilment $fulfilment)
+    public function __construct(?ReferenceCode $referenceCode, bool $onHoldByRetailer, ?Title $unknownProductTitle, Fulfilment $fulfilment)
     {
         $this->referenceCode = $referenceCode;
         $this->onHoldByRetailer = $onHoldByRetailer;
@@ -23,7 +23,7 @@ final class RetailerOfferUpdate
         $this->fulfilment = $fulfilment;
     }
 
-    public function referenceCode()
+    public function referenceCode(): ?ReferenceCode
     {
         return $this->referenceCode;
     }
@@ -33,7 +33,7 @@ final class RetailerOfferUpdate
         return $this->onHoldByRetailer;
     }
 
-    public function unknownProductTitle()
+    public function unknownProductTitle(): ?Title
     {
         return $this->unknownProductTitle;
     }
@@ -43,7 +43,7 @@ final class RetailerOfferUpdate
         return $this->fulfilment;
     }
 
-    public function withReferenceCode(ReferenceCode $referenceCode = null): RetailerOfferUpdate
+    public function withReferenceCode(?ReferenceCode $referenceCode): RetailerOfferUpdate
     {
         return new self($referenceCode, $this->onHoldByRetailer, $this->unknownProductTitle, $this->fulfilment);
     }
@@ -53,7 +53,7 @@ final class RetailerOfferUpdate
         return new self($this->referenceCode, $onHoldByRetailer, $this->unknownProductTitle, $this->fulfilment);
     }
 
-    public function withUnknownProductTitle(Title $unknownProductTitle = null): RetailerOfferUpdate
+    public function withUnknownProductTitle(?Title $unknownProductTitle): RetailerOfferUpdate
     {
         return new self($this->referenceCode, $this->onHoldByRetailer, $unknownProductTitle, $this->fulfilment);
     }
@@ -108,9 +108,9 @@ final class RetailerOfferUpdate
     public function toArray(): array
     {
         return [
-            'referenceCode' => null === $this->referenceCode ? null : $this->referenceCode->toString(),
+            'referenceCode' => null === $this->referenceCode ? null : null === $this->referenceCode ? null : $this->referenceCode->toString(),
             'onHoldByRetailer' => $this->onHoldByRetailer,
-            'unknownProductTitle' => null === $this->unknownProductTitle ? null : $this->unknownProductTitle->toString(),
+            'unknownProductTitle' => null === $this->unknownProductTitle ? null : null === $this->unknownProductTitle ? null : $this->unknownProductTitle->toString(),
             'fulfilment' => $this->fulfilment->toArray(),
         ];
     }

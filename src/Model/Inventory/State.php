@@ -10,13 +10,13 @@ namespace BolCom\RetailerApi\Model\Inventory;
 
 final class State
 {
-    const OPTIONS = [
+    public const OPTIONS = [
         'SALEABLE' => 'saleable',
         'UNSALEABLE' => 'unsaleable',
     ];
 
-    const SALEABLE = 'saleable';
-    const UNSALEABLE = 'unsaleable';
+    public const SALEABLE = 'saleable';
+    public const UNSALEABLE = 'unsaleable';
 
     private $name;
     private $value;

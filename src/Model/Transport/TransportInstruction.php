@@ -13,7 +13,7 @@ final class TransportInstruction
     private $transporterCode;
     private $trackAndTrace;
 
-    public function __construct(TransporterCode $transporterCode, TrackAndTrace $trackAndTrace = null)
+    public function __construct(TransporterCode $transporterCode, ?TrackAndTrace $trackAndTrace)
     {
         if ($trackAndTrace === null && !\Assert\Assertion::choice($transporterCode->toString(), [TransporterCode::BRIEFPOST, TransporterCode::OTHER], 'Track & Trace cannot be left empty for this Transporter Code.')) {
             throw new \InvalidArgumentException('');
@@ -28,7 +28,7 @@ final class TransportInstruction
         return $this->transporterCode;
     }
 
-    public function trackAndTrace()
+    public function trackAndTrace(): ?TrackAndTrace
     {
         return $this->trackAndTrace;
     }
@@ -38,7 +38,7 @@ final class TransportInstruction
         return new self($transporterCode, $this->trackAndTrace);
     }
 
-    public function withTrackAndTrace(TrackAndTrace $trackAndTrace = null): TransportInstruction
+    public function withTrackAndTrace(?TrackAndTrace $trackAndTrace): TransportInstruction
     {
         return new self($this->transporterCode, $trackAndTrace);
     }
@@ -68,7 +68,7 @@ final class TransportInstruction
     {
         return [
             'transporterCode' => $this->transporterCode->value(),
-            'trackAndTrace' => null === $this->trackAndTrace ? null : $this->trackAndTrace->toScalar(),
+            'trackAndTrace' => null === $this->trackAndTrace ? null : null === $this->trackAndTrace ? null : $this->trackAndTrace->toScalar(),
         ];
     }
 }

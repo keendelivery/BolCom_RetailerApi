@@ -13,7 +13,7 @@ final class InvoiceSpecificationPdfList
     private $pdfs;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Invoice\InvoiceSpecificationPdf[]|null $pdfs
+     * @param \BolCom\RetailerApi\Model\Invoice\InvoiceSpecificationPdf[] $pdfs
      */
     public function __construct(InvoiceSpecificationPdf ...$pdfs)
     {
@@ -29,7 +29,7 @@ final class InvoiceSpecificationPdfList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Invoice\InvoiceSpecificationPdf[]|null $pdfs
+     * @param \BolCom\RetailerApi\Model\Invoice\InvoiceSpecificationPdf[] $pdfs
      * @return \BolCom\RetailerApi\Model\Invoice\InvoiceSpecificationPdfList
      */
     public function withPdfs(array $pdfs): InvoiceSpecificationPdfList

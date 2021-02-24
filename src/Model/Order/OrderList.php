@@ -13,7 +13,7 @@ final class OrderList
     private $orders;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Order\OrderListItem[]|null $orders
+     * @param \BolCom\RetailerApi\Model\Order\OrderListItem[] $orders
      */
     public function __construct(OrderListItem ...$orders)
     {
@@ -29,7 +29,7 @@ final class OrderList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Order\OrderListItem[]|null $orders
+     * @param \BolCom\RetailerApi\Model\Order\OrderListItem[] $orders
      * @return \BolCom\RetailerApi\Model\Order\OrderList
      */
     public function withOrders(array $orders): OrderList

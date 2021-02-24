@@ -12,7 +12,7 @@ final class GetInvoice extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Invoice\Query\GetInvoice';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Invoice\Query\GetInvoice';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -28,7 +28,7 @@ final class GetInvoice extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['invoiceId']) || ! \is_int($payload['invoiceId'])) {
             throw new \InvalidArgumentException("Key 'invoiceId' is missing in payload or is not a int");

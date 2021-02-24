@@ -13,7 +13,7 @@ final class ReturnItemList
     private $returns;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Rma\ReducedReturnItem[]|null $returns
+     * @param \BolCom\RetailerApi\Model\Rma\ReducedReturnItem[] $returns
      */
     public function __construct(ReducedReturnItem ...$returns)
     {
@@ -29,7 +29,7 @@ final class ReturnItemList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Rma\ReducedReturnItem[]|null $returns
+     * @param \BolCom\RetailerApi\Model\Rma\ReducedReturnItem[] $returns
      * @return \BolCom\RetailerApi\Model\Rma\ReturnItemList
      */
     public function withReturns(array $returns): ReturnItemList

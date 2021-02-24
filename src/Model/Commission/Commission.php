@@ -27,9 +27,9 @@ final class Commission
      * @param \BolCom\RetailerApi\Model\PercentageAmount $percentage
      * @param \BolCom\RetailerApi\Model\CurrencyAmount $totalCost
      * @param \BolCom\RetailerApi\Model\CurrencyAmount $totalCostWithoutReduction
-     * @param \BolCom\RetailerApi\Model\Commission\CommissionReduction[] $reduction
+     * @param \BolCom\RetailerApi\Model\Commission\CommissionReduction[]|null $reduction
      */
-    public function __construct(\BolCom\RetailerApi\Model\Offer\Ean $ean, \BolCom\RetailerApi\Model\Offer\Condition $condition, \BolCom\RetailerApi\Model\CurrencyAmount $price = null, \BolCom\RetailerApi\Model\CurrencyAmount $fixedAmount, \BolCom\RetailerApi\Model\PercentageAmount $percentage, \BolCom\RetailerApi\Model\CurrencyAmount $totalCost, \BolCom\RetailerApi\Model\CurrencyAmount $totalCostWithoutReduction = null, array $reduction = null)
+    public function __construct(\BolCom\RetailerApi\Model\Offer\Ean $ean, \BolCom\RetailerApi\Model\Offer\Condition $condition, ?\BolCom\RetailerApi\Model\CurrencyAmount $price, \BolCom\RetailerApi\Model\CurrencyAmount $fixedAmount, \BolCom\RetailerApi\Model\PercentageAmount $percentage, \BolCom\RetailerApi\Model\CurrencyAmount $totalCost, ?\BolCom\RetailerApi\Model\CurrencyAmount $totalCostWithoutReduction, ?array $reduction)
     {
         $this->ean = $ean;
         $this->condition = $condition;
@@ -59,7 +59,7 @@ final class Commission
         return $this->condition;
     }
 
-    public function price()
+    public function price(): ?\BolCom\RetailerApi\Model\CurrencyAmount
     {
         return $this->price;
     }
@@ -79,7 +79,7 @@ final class Commission
         return $this->totalCost;
     }
 
-    public function totalCostWithoutReduction()
+    public function totalCostWithoutReduction(): ?\BolCom\RetailerApi\Model\CurrencyAmount
     {
         return $this->totalCostWithoutReduction;
     }
@@ -87,7 +87,7 @@ final class Commission
     /**
      * @return \BolCom\RetailerApi\Model\Commission\CommissionReduction[]|null
      */
-    public function reduction()
+    public function reduction(): ?array
     {
         return $this->reduction;
     }
@@ -102,7 +102,7 @@ final class Commission
         return new self($this->ean, $condition, $this->price, $this->fixedAmount, $this->percentage, $this->totalCost, $this->totalCostWithoutReduction, $this->reduction);
     }
 
-    public function withPrice(\BolCom\RetailerApi\Model\CurrencyAmount $price = null): Commission
+    public function withPrice(?\BolCom\RetailerApi\Model\CurrencyAmount $price): Commission
     {
         return new self($this->ean, $this->condition, $price, $this->fixedAmount, $this->percentage, $this->totalCost, $this->totalCostWithoutReduction, $this->reduction);
     }
@@ -122,16 +122,16 @@ final class Commission
         return new self($this->ean, $this->condition, $this->price, $this->fixedAmount, $this->percentage, $totalCost, $this->totalCostWithoutReduction, $this->reduction);
     }
 
-    public function withTotalCostWithoutReduction(\BolCom\RetailerApi\Model\CurrencyAmount $totalCostWithoutReduction = null): Commission
+    public function withTotalCostWithoutReduction(?\BolCom\RetailerApi\Model\CurrencyAmount $totalCostWithoutReduction): Commission
     {
         return new self($this->ean, $this->condition, $this->price, $this->fixedAmount, $this->percentage, $this->totalCost, $totalCostWithoutReduction, $this->reduction);
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Commission\CommissionReduction[] $reduction
+     * @param \BolCom\RetailerApi\Model\Commission\CommissionReduction[]|null $reduction
      * @return \BolCom\RetailerApi\Model\Commission\Commission
      */
-    public function withReduction(array $reduction = null): Commission
+    public function withReduction(?array $reduction): Commission
     {
         return new self($this->ean, $this->condition, $this->price, $this->fixedAmount, $this->percentage, $this->totalCost, $this->totalCostWithoutReduction, $reduction);
     }
@@ -193,15 +193,7 @@ final class Commission
                 throw new \InvalidArgumentException("Value for 'reduction' is not an array in data array");
             }
 
-            $reduction = [];
-
-            foreach ($data['reduction'] as $__value) {
-                if (! \is_array($data['reduction'])) {
-                    throw new \InvalidArgumentException("Key 'reduction' in data array or is not an array of arrays");
-                }
-
-                $reduction[] = CommissionReduction::fromArray($__value);
-            }
+            $reduction = CommissionReduction::fromArray($data['reduction']);
         } else {
             $reduction = null;
         }

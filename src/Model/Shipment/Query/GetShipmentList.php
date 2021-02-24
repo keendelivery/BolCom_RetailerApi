@@ -12,7 +12,7 @@ final class GetShipmentList extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Shipment\Query\GetShipmentList';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Shipment\Query\GetShipmentList';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -21,17 +21,17 @@ final class GetShipmentList extends \Prooph\Common\Messaging\Query
         return $this->payload['page'];
     }
 
-    public function fulfilmentMethod()
+    public function fulfilmentMethod(): ?\BolCom\RetailerApi\Model\Offer\FulfilmentMethod
     {
         return isset($this->payload['fulfilmentMethod']) ? \BolCom\RetailerApi\Model\Offer\FulfilmentMethod::fromValue($this->payload['fulfilmentMethod']) : null;
     }
 
-    public function orderId()
+    public function orderId(): ?\BolCom\RetailerApi\Model\Order\OrderId
     {
         return isset($this->payload['orderId']) ? \BolCom\RetailerApi\Model\Order\OrderId::fromString($this->payload['orderId']) : null;
     }
 
-    public static function with(int $page, \BolCom\RetailerApi\Model\Offer\FulfilmentMethod $fulfilmentMethod = null, \BolCom\RetailerApi\Model\Order\OrderId $orderId = null): GetShipmentList
+    public static function with(int $page, ?\BolCom\RetailerApi\Model\Offer\FulfilmentMethod $fulfilmentMethod, ?\BolCom\RetailerApi\Model\Order\OrderId $orderId): GetShipmentList
     {
         return new self([
             'page' => $page,
@@ -40,7 +40,7 @@ final class GetShipmentList extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['page']) || ! \is_int($payload['page'])) {
             throw new \InvalidArgumentException("Key 'page' is missing in payload or is not a int");

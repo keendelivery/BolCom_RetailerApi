@@ -12,7 +12,7 @@ final class GetAllOpenOrders extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Query\GetAllOpenOrders';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Query\GetAllOpenOrders';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -34,7 +34,7 @@ final class GetAllOpenOrders extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['page']) || ! \is_int($payload['page'])) {
             throw new \InvalidArgumentException("Key 'page' is missing in payload or is not a int");

@@ -21,11 +21,11 @@ final class Shipment
      * @param \BolCom\RetailerApi\Model\Shipment\ShipmentId $shipmentId
      * @param \BolCom\RetailerApi\Model\DateTime $shipmentDate
      * @param string $shipmentReference
-     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItem[]|null $shipmentItems
+     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItem[] $shipmentItems
      * @param \BolCom\RetailerApi\Model\Transport\Transport $transport
      * @param \BolCom\RetailerApi\Model\Customer\CustomerDetails $customerDetails
      */
-    public function __construct(ShipmentId $shipmentId, \BolCom\RetailerApi\Model\DateTime $shipmentDate, string $shipmentReference = null, array $shipmentItems, \BolCom\RetailerApi\Model\Transport\Transport $transport = null, \BolCom\RetailerApi\Model\Customer\CustomerDetails $customerDetails = null)
+    public function __construct(ShipmentId $shipmentId, \BolCom\RetailerApi\Model\DateTime $shipmentDate, ?string $shipmentReference, array $shipmentItems, ?\BolCom\RetailerApi\Model\Transport\Transport $transport, ?\BolCom\RetailerApi\Model\Customer\CustomerDetails $customerDetails)
     {
         $this->shipmentId = $shipmentId;
         $this->shipmentDate = $shipmentDate;
@@ -52,7 +52,7 @@ final class Shipment
         return $this->shipmentDate;
     }
 
-    public function shipmentReference()
+    public function shipmentReference(): ?string
     {
         return $this->shipmentReference;
     }
@@ -65,12 +65,12 @@ final class Shipment
         return $this->shipmentItems;
     }
 
-    public function transport()
+    public function transport(): ?\BolCom\RetailerApi\Model\Transport\Transport
     {
         return $this->transport;
     }
 
-    public function customerDetails()
+    public function customerDetails(): ?\BolCom\RetailerApi\Model\Customer\CustomerDetails
     {
         return $this->customerDetails;
     }
@@ -85,13 +85,13 @@ final class Shipment
         return new self($this->shipmentId, $shipmentDate, $this->shipmentReference, $this->shipmentItems, $this->transport, $this->customerDetails);
     }
 
-    public function withShipmentReference(string $shipmentReference = null): Shipment
+    public function withShipmentReference(?string $shipmentReference): Shipment
     {
         return new self($this->shipmentId, $this->shipmentDate, $shipmentReference, $this->shipmentItems, $this->transport, $this->customerDetails);
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItem[]|null $shipmentItems
+     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItem[] $shipmentItems
      * @return \BolCom\RetailerApi\Model\Shipment\Shipment
      */
     public function withShipmentItems(array $shipmentItems): Shipment
@@ -99,12 +99,12 @@ final class Shipment
         return new self($this->shipmentId, $this->shipmentDate, $this->shipmentReference, $shipmentItems, $this->transport, $this->customerDetails);
     }
 
-    public function withTransport(\BolCom\RetailerApi\Model\Transport\Transport $transport = null): Shipment
+    public function withTransport(?\BolCom\RetailerApi\Model\Transport\Transport $transport): Shipment
     {
         return new self($this->shipmentId, $this->shipmentDate, $this->shipmentReference, $this->shipmentItems, $transport, $this->customerDetails);
     }
 
-    public function withCustomerDetails(\BolCom\RetailerApi\Model\Customer\CustomerDetails $customerDetails = null): Shipment
+    public function withCustomerDetails(?\BolCom\RetailerApi\Model\Customer\CustomerDetails $customerDetails): Shipment
     {
         return new self($this->shipmentId, $this->shipmentDate, $this->shipmentReference, $this->shipmentItems, $this->transport, $customerDetails);
     }

@@ -13,7 +13,7 @@ final class ShipmentList
     private $shipments;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentListItem[]|null $shipments
+     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentListItem[] $shipments
      */
     public function __construct(ShipmentListItem ...$shipments)
     {
@@ -29,7 +29,7 @@ final class ShipmentList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentListItem[]|null $shipments
+     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentListItem[] $shipments
      * @return \BolCom\RetailerApi\Model\Shipment\ShipmentList
      */
     public function withShipments(array $shipments): ShipmentList

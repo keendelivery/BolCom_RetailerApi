@@ -12,26 +12,26 @@ final class GetInventory extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Inventory\Query\GetInventory';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Inventory\Query\GetInventory';
 
     protected $messageName = self::MESSAGE_NAME;
 
-    public function page()
+    public function page(): ?int
     {
         return $this->payload['page'] ?? null;
     }
 
-    public function query()
+    public function query(): ?string
     {
         return $this->payload['query'] ?? null;
     }
 
-    public function stock()
+    public function stock(): ?\BolCom\RetailerApi\Model\Inventory\Stock
     {
         return isset($this->payload['stock']) ? \BolCom\RetailerApi\Model\Inventory\Stock::fromValue($this->payload['stock']) : null;
     }
 
-    public function state()
+    public function state(): ?\BolCom\RetailerApi\Model\Inventory\State
     {
         return isset($this->payload['state']) ? \BolCom\RetailerApi\Model\Inventory\State::fromValue($this->payload['state']) : null;
     }
@@ -39,7 +39,7 @@ final class GetInventory extends \Prooph\Common\Messaging\Query
     /**
      * @return string[]|null
      */
-    public function quantity()
+    public function quantity(): ?array
     {
         return $this->payload['quantity'] ?? null;
     }
@@ -49,9 +49,9 @@ final class GetInventory extends \Prooph\Common\Messaging\Query
      * @param string $query
      * @param \BolCom\RetailerApi\Model\Inventory\Stock $stock
      * @param \BolCom\RetailerApi\Model\Inventory\State $state
-     * @param string[] $quantity
+     * @param string[]|null $quantity
      */
-public static function with(int $page = null, string $query = null, \BolCom\RetailerApi\Model\Inventory\Stock $stock = null, \BolCom\RetailerApi\Model\Inventory\State $state = null, array $quantity = null): GetInventory
+public static function with(?int $page, ?string $query, ?\BolCom\RetailerApi\Model\Inventory\Stock $stock, ?\BolCom\RetailerApi\Model\Inventory\State $state, ?array $quantity): GetInventory
     {
         return new self([
             'page' => $page,
@@ -62,7 +62,7 @@ public static function with(int $page = null, string $query = null, \BolCom\Reta
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (isset($payload['page']) && ! \is_int($payload['page'])) {
             throw new \InvalidArgumentException("Value for 'page' is not a int in payload");

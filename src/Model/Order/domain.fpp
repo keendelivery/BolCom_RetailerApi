@@ -53,7 +53,7 @@ namespace BolCom\RetailerApi\Model\Order {
         \BolCom\RetailerApi\Model\CurrencyAmount $offerPrice,
         \BolCom\RetailerApi\Model\Offer\OfferId $offerId,
         \BolCom\RetailerApi\Model\CurrencyAmount $transactionFee,
-        \BolCom\RetailerApi\Model\Date $latestDeliveryDate,
+        ?\BolCom\RetailerApi\Model\Date $latestDeliveryDate,
         \BolCom\RetailerApi\Model\Offer\Condition $offerCondition,
         bool $cancelRequest,
         \BolCom\RetailerApi\Model\Offer\FulfilmentMethod $fulfilmentMethod,

@@ -13,7 +13,7 @@ final class CommissionList
     private $commissions;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Commission\Commission[]|null $commissions
+     * @param \BolCom\RetailerApi\Model\Commission\Commission[] $commissions
      */
     public function __construct(Commission ...$commissions)
     {
@@ -29,7 +29,7 @@ final class CommissionList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Commission\Commission[]|null $commissions
+     * @param \BolCom\RetailerApi\Model\Commission\Commission[] $commissions
      * @return \BolCom\RetailerApi\Model\Commission\CommissionList
      */
     public function withCommissions(array $commissions): CommissionList

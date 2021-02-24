@@ -12,7 +12,7 @@ final class ShipOrderItem extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Command\ShipOrderItem';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Command\ShipOrderItem';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -21,17 +21,17 @@ final class ShipOrderItem extends \Prooph\Common\Messaging\Query
         return \BolCom\RetailerApi\Model\Order\OrderItemId::fromString($this->payload['orderItemId']);
     }
 
-    public function shipmentReference()
+    public function shipmentReference(): ?string
     {
         return $this->payload['shipmentReference'] ?? null;
     }
 
-    public function transport()
+    public function transport(): ?\BolCom\RetailerApi\Model\Transport\TransportInstruction
     {
         return isset($this->payload['transport']) ? \BolCom\RetailerApi\Model\Transport\TransportInstruction::fromArray($this->payload['transport']) : null;
     }
 
-    public static function with(\BolCom\RetailerApi\Model\Order\OrderItemId $orderItemId, string $shipmentReference = null, \BolCom\RetailerApi\Model\Transport\TransportInstruction $transport = null): ShipOrderItem
+    public static function with(\BolCom\RetailerApi\Model\Order\OrderItemId $orderItemId, ?string $shipmentReference, ?\BolCom\RetailerApi\Model\Transport\TransportInstruction $transport): ShipOrderItem
     {
         return new self([
             'orderItemId' => $orderItemId->toString(),
@@ -40,7 +40,7 @@ final class ShipOrderItem extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['orderItemId']) || ! \is_string($payload['orderItemId'])) {
             throw new \InvalidArgumentException("Key 'orderItemId' is missing in payload or is not a string");

@@ -13,7 +13,7 @@ final class Fulfilment
     private $type;
     private $deliveryCode;
 
-    public function __construct(FulfilmentMethod $type, DeliveryCode $deliveryCode = null)
+    public function __construct(FulfilmentMethod $type, ?DeliveryCode $deliveryCode)
     {
         $this->type = $type;
         $this->deliveryCode = $deliveryCode;
@@ -24,7 +24,7 @@ final class Fulfilment
         return $this->type;
     }
 
-    public function deliveryCode()
+    public function deliveryCode(): ?DeliveryCode
     {
         return $this->deliveryCode;
     }
@@ -34,7 +34,7 @@ final class Fulfilment
         return new self($type, $this->deliveryCode);
     }
 
-    public function withDeliveryCode(DeliveryCode $deliveryCode = null): Fulfilment
+    public function withDeliveryCode(?DeliveryCode $deliveryCode): Fulfilment
     {
         return new self($this->type, $deliveryCode);
     }

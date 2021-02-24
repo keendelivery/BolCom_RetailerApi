@@ -13,7 +13,7 @@ final class FbbTransporters
     private $fbbTransporters;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inbound\Transporter[]|null $fbbTransporters
+     * @param \BolCom\RetailerApi\Model\Inbound\Transporter[] $fbbTransporters
      */
     public function __construct(Transporter ...$fbbTransporters)
     {
@@ -29,7 +29,7 @@ final class FbbTransporters
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inbound\Transporter[]|null $fbbTransporters
+     * @param \BolCom\RetailerApi\Model\Inbound\Transporter[] $fbbTransporters
      * @return \BolCom\RetailerApi\Model\Inbound\FbbTransporters
      */
     public function withFbbTransporters(array $fbbTransporters): FbbTransporters

@@ -12,7 +12,7 @@ final class GetOrder extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Query\GetOrder';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Query\GetOrder';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -28,7 +28,7 @@ final class GetOrder extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['orderId']) || ! \is_string($payload['orderId'])) {
             throw new \InvalidArgumentException("Key 'orderId' is missing in payload or is not a string");

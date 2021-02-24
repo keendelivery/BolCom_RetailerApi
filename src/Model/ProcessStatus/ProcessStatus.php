@@ -18,7 +18,7 @@ final class ProcessStatus
     private $errorMessage;
     private $createTimestamp;
 
-    public function __construct(int $id, EntityId $entityId = null, EventType $eventType, string $description, EventStatus $status, string $errorMessage = null, \BolCom\RetailerApi\Model\DateTime $createTimestamp)
+    public function __construct(int $id, ?EntityId $entityId, EventType $eventType, string $description, EventStatus $status, ?string $errorMessage, \BolCom\RetailerApi\Model\DateTime $createTimestamp)
     {
         $this->id = $id;
         $this->entityId = $entityId;
@@ -34,7 +34,7 @@ final class ProcessStatus
         return $this->id;
     }
 
-    public function entityId()
+    public function entityId(): ?EntityId
     {
         return $this->entityId;
     }
@@ -54,7 +54,7 @@ final class ProcessStatus
         return $this->status;
     }
 
-    public function errorMessage()
+    public function errorMessage(): ?string
     {
         return $this->errorMessage;
     }
@@ -69,7 +69,7 @@ final class ProcessStatus
         return new self($id, $this->entityId, $this->eventType, $this->description, $this->status, $this->errorMessage, $this->createTimestamp);
     }
 
-    public function withEntityId(EntityId $entityId = null): ProcessStatus
+    public function withEntityId(?EntityId $entityId): ProcessStatus
     {
         return new self($this->id, $entityId, $this->eventType, $this->description, $this->status, $this->errorMessage, $this->createTimestamp);
     }
@@ -89,7 +89,7 @@ final class ProcessStatus
         return new self($this->id, $this->entityId, $this->eventType, $this->description, $status, $this->errorMessage, $this->createTimestamp);
     }
 
-    public function withErrorMessage(string $errorMessage = null): ProcessStatus
+    public function withErrorMessage(?string $errorMessage): ProcessStatus
     {
         return new self($this->id, $this->entityId, $this->eventType, $this->description, $this->status, $errorMessage, $this->createTimestamp);
     }

@@ -13,7 +13,7 @@ final class InventoryOfferList
     private $offers;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inventory\InventoryOffer[]|null $offers
+     * @param \BolCom\RetailerApi\Model\Inventory\InventoryOffer[] $offers
      */
     public function __construct(InventoryOffer ...$offers)
     {
@@ -29,7 +29,7 @@ final class InventoryOfferList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inventory\InventoryOffer[]|null $offers
+     * @param \BolCom\RetailerApi\Model\Inventory\InventoryOffer[] $offers
      * @return \BolCom\RetailerApi\Model\Inventory\InventoryOfferList
      */
     public function withOffers(array $offers): InventoryOfferList

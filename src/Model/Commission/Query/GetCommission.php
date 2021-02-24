@@ -12,7 +12,7 @@ final class GetCommission extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Commission\Query\GetCommission';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Commission\Query\GetCommission';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -21,17 +21,17 @@ final class GetCommission extends \Prooph\Common\Messaging\Query
         return \BolCom\RetailerApi\Model\Offer\Ean::fromString($this->payload['ean']);
     }
 
-    public function condition()
+    public function condition(): ?\BolCom\RetailerApi\Model\Offer\Condition
     {
         return isset($this->payload['condition']) ? \BolCom\RetailerApi\Model\Offer\Condition::fromValue($this->payload['condition']) : null;
     }
 
-    public function price()
+    public function price(): ?\BolCom\RetailerApi\Model\CurrencyAmount
     {
         return isset($this->payload['price']) ? \BolCom\RetailerApi\Model\CurrencyAmount::fromScalar($this->payload['price']) : null;
     }
 
-    public static function with(\BolCom\RetailerApi\Model\Offer\Ean $ean, \BolCom\RetailerApi\Model\Offer\Condition $condition = null, \BolCom\RetailerApi\Model\CurrencyAmount $price = null): GetCommission
+    public static function with(\BolCom\RetailerApi\Model\Offer\Ean $ean, ?\BolCom\RetailerApi\Model\Offer\Condition $condition, ?\BolCom\RetailerApi\Model\CurrencyAmount $price): GetCommission
     {
         return new self([
             'ean' => $ean->toString(),
@@ -40,7 +40,7 @@ final class GetCommission extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['ean']) || ! \is_string($payload['ean'])) {
             throw new \InvalidArgumentException("Key 'ean' is missing in payload or is not a string");

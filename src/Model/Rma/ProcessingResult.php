@@ -10,17 +10,17 @@ namespace BolCom\RetailerApi\Model\Rma;
 
 final class ProcessingResult
 {
-    const OPTIONS = [
+    public const OPTIONS = [
         'PENDING' => 'PENDING',
         'ACCEPTED' => 'ACCEPTED',
         'REJECTED' => 'REJECTED',
         'CANCELLED' => 'CANCELLED',
     ];
 
-    const PENDING = 'PENDING';
-    const ACCEPTED = 'ACCEPTED';
-    const REJECTED = 'REJECTED';
-    const CANCELLED = 'CANCELLED';
+    public const PENDING = 'PENDING';
+    public const ACCEPTED = 'ACCEPTED';
+    public const REJECTED = 'REJECTED';
+    public const CANCELLED = 'CANCELLED';
 
     private $name;
     private $value;

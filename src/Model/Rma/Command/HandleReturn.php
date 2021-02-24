@@ -12,7 +12,7 @@ final class HandleReturn extends \Prooph\Common\Messaging\Command
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Rma\Command\HandleReturn';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Rma\Command\HandleReturn';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -40,7 +40,7 @@ final class HandleReturn extends \Prooph\Common\Messaging\Command
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['rmaId']) || ! \is_int($payload['rmaId'])) {
             throw new \InvalidArgumentException("Key 'rmaId' is missing in payload or is not a int");

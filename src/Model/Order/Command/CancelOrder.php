@@ -12,7 +12,7 @@ final class CancelOrder extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Command\CancelOrder';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Order\Command\CancelOrder';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -21,12 +21,12 @@ final class CancelOrder extends \Prooph\Common\Messaging\Query
         return \BolCom\RetailerApi\Model\Order\OrderItemId::fromString($this->payload['orderItemId']);
     }
 
-    public function reasonCode()
+    public function reasonCode(): ?\BolCom\RetailerApi\Model\Order\CancellationReason
     {
         return isset($this->payload['reasonCode']) ? \BolCom\RetailerApi\Model\Order\CancellationReason::fromValue($this->payload['reasonCode']) : null;
     }
 
-    public static function with(\BolCom\RetailerApi\Model\Order\OrderItemId $orderItemId, \BolCom\RetailerApi\Model\Order\CancellationReason $reasonCode = null): CancelOrder
+    public static function with(\BolCom\RetailerApi\Model\Order\OrderItemId $orderItemId, ?\BolCom\RetailerApi\Model\Order\CancellationReason $reasonCode): CancelOrder
     {
         return new self([
             'orderItemId' => $orderItemId->toString(),
@@ -34,7 +34,7 @@ final class CancelOrder extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['orderItemId']) || ! \is_string($payload['orderItemId'])) {
             throw new \InvalidArgumentException("Key 'orderItemId' is missing in payload or is not a string");

@@ -17,7 +17,7 @@ final class InventoryList
     /**
      * @param int $totalCount
      * @param int $totalPageCount
-     * @param \BolCom\RetailerApi\Model\Inbound\InventoryOffer[]|null $offers
+     * @param \BolCom\RetailerApi\Model\Inbound\InventoryOffer[] $offers
      */
     public function __construct(int $totalCount, int $totalPageCount, array $offers)
     {
@@ -61,7 +61,7 @@ final class InventoryList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inbound\InventoryOffer[]|null $offers
+     * @param \BolCom\RetailerApi\Model\Inbound\InventoryOffer[] $offers
      * @return \BolCom\RetailerApi\Model\Inbound\InventoryList
      */
     public function withOffers(array $offers): InventoryList

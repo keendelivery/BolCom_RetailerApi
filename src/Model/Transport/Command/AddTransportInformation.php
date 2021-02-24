@@ -14,7 +14,7 @@ final class AddTransportInformation
     private $transporterCode;
     private $trackAndTrace;
 
-    public function __construct(\BolCom\RetailerApi\Model\Transport\TransportId $transportId, \BolCom\RetailerApi\Model\Transport\TransporterCode $transporterCode, \BolCom\RetailerApi\Model\Transport\TrackAndTrace $trackAndTrace = null)
+    public function __construct(\BolCom\RetailerApi\Model\Transport\TransportId $transportId, \BolCom\RetailerApi\Model\Transport\TransporterCode $transporterCode, ?\BolCom\RetailerApi\Model\Transport\TrackAndTrace $trackAndTrace)
     {
         $this->transportId = $transportId;
         $this->transporterCode = $transporterCode;
@@ -31,7 +31,7 @@ final class AddTransportInformation
         return $this->transporterCode;
     }
 
-    public function trackAndTrace()
+    public function trackAndTrace(): ?\BolCom\RetailerApi\Model\Transport\TrackAndTrace
     {
         return $this->trackAndTrace;
     }
@@ -46,7 +46,7 @@ final class AddTransportInformation
         return new self($this->transportId, $transporterCode, $this->trackAndTrace);
     }
 
-    public function withTrackAndTrace(\BolCom\RetailerApi\Model\Transport\TrackAndTrace $trackAndTrace = null): AddTransportInformation
+    public function withTrackAndTrace(?\BolCom\RetailerApi\Model\Transport\TrackAndTrace $trackAndTrace): AddTransportInformation
     {
         return new self($this->transportId, $this->transporterCode, $trackAndTrace);
     }

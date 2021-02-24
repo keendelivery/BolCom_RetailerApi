@@ -12,7 +12,7 @@ final class GetProductLabelsByEan extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Inbound\Query\GetProductLabelsByEan';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\Inbound\Query\GetProductLabelsByEan';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -37,7 +37,7 @@ final class GetProductLabelsByEan extends \Prooph\Common\Messaging\Query
 
         /**
      * @param \BolCom\RetailerApi\Model\Inbound\ProductLabelFormat $format
-     * @param \BolCom\RetailerApi\Model\Inbound\ProductLabel[]|null $productLabels
+     * @param \BolCom\RetailerApi\Model\Inbound\ProductLabel[] $productLabels
      */
 public static function with(\BolCom\RetailerApi\Model\Inbound\ProductLabelFormat $format, array $productLabels): GetProductLabelsByEan
     {
@@ -47,7 +47,7 @@ public static function with(\BolCom\RetailerApi\Model\Inbound\ProductLabelFormat
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['format']) || ! \is_string($payload['format'])) {
             throw new \InvalidArgumentException("Key 'format' is missing in payload or is not a string");

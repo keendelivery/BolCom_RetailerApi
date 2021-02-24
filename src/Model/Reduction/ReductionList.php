@@ -13,7 +13,7 @@ final class ReductionList
     private $reductions;
 
     /**
-     * @param \BolCom\RetailerApi\Model\Reduction\Reduction[]|null $reductions
+     * @param \BolCom\RetailerApi\Model\Reduction\Reduction[] $reductions
      */
     public function __construct(Reduction ...$reductions)
     {
@@ -29,7 +29,7 @@ final class ReductionList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Reduction\Reduction[]|null $reductions
+     * @param \BolCom\RetailerApi\Model\Reduction\Reduction[] $reductions
      * @return \BolCom\RetailerApi\Model\Reduction\ReductionList
      */
     public function withReductions(array $reductions): ReductionList

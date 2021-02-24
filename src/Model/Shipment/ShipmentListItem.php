@@ -20,10 +20,10 @@ final class ShipmentListItem
      * @param \BolCom\RetailerApi\Model\Shipment\ShipmentId $shipmentId
      * @param \BolCom\RetailerApi\Model\DateTime $shipmentDate
      * @param string $shipmentReference
-     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItemListItem[]|null $shipmentItems
+     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItemListItem[] $shipmentItems
      * @param \BolCom\RetailerApi\Model\Transport\ReducedTransport $transport
      */
-    public function __construct(ShipmentId $shipmentId, \BolCom\RetailerApi\Model\DateTime $shipmentDate, string $shipmentReference = null, array $shipmentItems, \BolCom\RetailerApi\Model\Transport\ReducedTransport $transport)
+    public function __construct(ShipmentId $shipmentId, \BolCom\RetailerApi\Model\DateTime $shipmentDate, ?string $shipmentReference, array $shipmentItems, \BolCom\RetailerApi\Model\Transport\ReducedTransport $transport)
     {
         $this->shipmentId = $shipmentId;
         $this->shipmentDate = $shipmentDate;
@@ -49,7 +49,7 @@ final class ShipmentListItem
         return $this->shipmentDate;
     }
 
-    public function shipmentReference()
+    public function shipmentReference(): ?string
     {
         return $this->shipmentReference;
     }
@@ -77,13 +77,13 @@ final class ShipmentListItem
         return new self($this->shipmentId, $shipmentDate, $this->shipmentReference, $this->shipmentItems, $this->transport);
     }
 
-    public function withShipmentReference(string $shipmentReference = null): ShipmentListItem
+    public function withShipmentReference(?string $shipmentReference): ShipmentListItem
     {
         return new self($this->shipmentId, $this->shipmentDate, $shipmentReference, $this->shipmentItems, $this->transport);
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItemListItem[]|null $shipmentItems
+     * @param \BolCom\RetailerApi\Model\Shipment\ShipmentItemListItem[] $shipmentItems
      * @return \BolCom\RetailerApi\Model\Shipment\ShipmentListItem
      */
     public function withShipmentItems(array $shipmentItems): ShipmentListItem

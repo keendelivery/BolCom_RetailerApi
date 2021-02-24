@@ -19,7 +19,7 @@ final class RetailerOfferUpsert
     private $stock;
     private $fulfilment;
 
-    public function __construct(Ean $ean, OfferCondition $condition, ReferenceCode $referenceCode = null, bool $onHoldByRetailer, Title $unknownProductTitle = null, Pricing $pricing, Stock $stock, Fulfilment $fulfilment)
+    public function __construct(Ean $ean, OfferCondition $condition, ?ReferenceCode $referenceCode, bool $onHoldByRetailer, ?Title $unknownProductTitle, Pricing $pricing, Stock $stock, Fulfilment $fulfilment)
     {
         $this->ean = $ean;
         $this->condition = $condition;
@@ -41,7 +41,7 @@ final class RetailerOfferUpsert
         return $this->condition;
     }
 
-    public function referenceCode()
+    public function referenceCode(): ?ReferenceCode
     {
         return $this->referenceCode;
     }
@@ -51,7 +51,7 @@ final class RetailerOfferUpsert
         return $this->onHoldByRetailer;
     }
 
-    public function unknownProductTitle()
+    public function unknownProductTitle(): ?Title
     {
         return $this->unknownProductTitle;
     }
@@ -81,7 +81,7 @@ final class RetailerOfferUpsert
         return new self($this->ean, $condition, $this->referenceCode, $this->onHoldByRetailer, $this->unknownProductTitle, $this->pricing, $this->stock, $this->fulfilment);
     }
 
-    public function withReferenceCode(ReferenceCode $referenceCode = null): RetailerOfferUpsert
+    public function withReferenceCode(?ReferenceCode $referenceCode): RetailerOfferUpsert
     {
         return new self($this->ean, $this->condition, $referenceCode, $this->onHoldByRetailer, $this->unknownProductTitle, $this->pricing, $this->stock, $this->fulfilment);
     }
@@ -91,7 +91,7 @@ final class RetailerOfferUpsert
         return new self($this->ean, $this->condition, $this->referenceCode, $onHoldByRetailer, $this->unknownProductTitle, $this->pricing, $this->stock, $this->fulfilment);
     }
 
-    public function withUnknownProductTitle(Title $unknownProductTitle = null): RetailerOfferUpsert
+    public function withUnknownProductTitle(?Title $unknownProductTitle): RetailerOfferUpsert
     {
         return new self($this->ean, $this->condition, $this->referenceCode, $this->onHoldByRetailer, $unknownProductTitle, $this->pricing, $this->stock, $this->fulfilment);
     }
@@ -186,9 +186,9 @@ final class RetailerOfferUpsert
         return [
             'ean' => $this->ean->toString(),
             'condition' => $this->condition->toArray(),
-            'referenceCode' => null === $this->referenceCode ? null : $this->referenceCode->toString(),
+            'referenceCode' => null === $this->referenceCode ? null : null === $this->referenceCode ? null : $this->referenceCode->toString(),
             'onHoldByRetailer' => $this->onHoldByRetailer,
-            'unknownProductTitle' => null === $this->unknownProductTitle ? null : $this->unknownProductTitle->toString(),
+            'unknownProductTitle' => null === $this->unknownProductTitle ? null : null === $this->unknownProductTitle ? null : $this->unknownProductTitle->toString(),
             'pricing' => $this->pricing->toArray(),
             'stock' => $this->stock->toArray(),
             'fulfilment' => $this->fulfilment->toArray(),

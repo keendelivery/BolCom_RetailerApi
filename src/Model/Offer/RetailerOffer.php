@@ -33,9 +33,9 @@ final class RetailerOffer
      * @param \BolCom\RetailerApi\Model\Offer\Fulfilment $fulfilment
      * @param \BolCom\RetailerApi\Model\Offer\Store $store
      * @param \BolCom\RetailerApi\Model\Offer\OfferCondition $condition
-     * @param \BolCom\RetailerApi\Model\Offer\NotPublishableReasons[] $notPublishableReasons
+     * @param \BolCom\RetailerApi\Model\Offer\NotPublishableReasons[]|null $notPublishableReasons
      */
-    public function __construct(OfferId $offerId, Ean $ean, ReferenceCode $referenceCode, bool $onHoldByRetailer, Title $unknownProductTitle = null, Pricing $pricing, OfferStock $stock, Fulfilment $fulfilment, Store $store, OfferCondition $condition, array $notPublishableReasons = null)
+    public function __construct(OfferId $offerId, Ean $ean, ReferenceCode $referenceCode, bool $onHoldByRetailer, ?Title $unknownProductTitle, Pricing $pricing, OfferStock $stock, Fulfilment $fulfilment, Store $store, OfferCondition $condition, ?array $notPublishableReasons)
     {
         $this->offerId = $offerId;
         $this->ean = $ean;
@@ -78,7 +78,7 @@ final class RetailerOffer
         return $this->onHoldByRetailer;
     }
 
-    public function unknownProductTitle()
+    public function unknownProductTitle(): ?Title
     {
         return $this->unknownProductTitle;
     }
@@ -111,7 +111,7 @@ final class RetailerOffer
     /**
      * @return \BolCom\RetailerApi\Model\Offer\NotPublishableReasons[]|null
      */
-    public function notPublishableReasons()
+    public function notPublishableReasons(): ?array
     {
         return $this->notPublishableReasons;
     }
@@ -136,7 +136,7 @@ final class RetailerOffer
         return new self($this->offerId, $this->ean, $this->referenceCode, $onHoldByRetailer, $this->unknownProductTitle, $this->pricing, $this->stock, $this->fulfilment, $this->store, $this->condition, $this->notPublishableReasons);
     }
 
-    public function withUnknownProductTitle(Title $unknownProductTitle = null): RetailerOffer
+    public function withUnknownProductTitle(?Title $unknownProductTitle): RetailerOffer
     {
         return new self($this->offerId, $this->ean, $this->referenceCode, $this->onHoldByRetailer, $unknownProductTitle, $this->pricing, $this->stock, $this->fulfilment, $this->store, $this->condition, $this->notPublishableReasons);
     }
@@ -167,10 +167,10 @@ final class RetailerOffer
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Offer\NotPublishableReasons[] $notPublishableReasons
+     * @param \BolCom\RetailerApi\Model\Offer\NotPublishableReasons[]|null $notPublishableReasons
      * @return \BolCom\RetailerApi\Model\Offer\RetailerOffer
      */
-    public function withNotPublishableReasons(array $notPublishableReasons = null): RetailerOffer
+    public function withNotPublishableReasons(?array $notPublishableReasons): RetailerOffer
     {
         return new self($this->offerId, $this->ean, $this->referenceCode, $this->onHoldByRetailer, $this->unknownProductTitle, $this->pricing, $this->stock, $this->fulfilment, $this->store, $this->condition, $notPublishableReasons);
     }
@@ -246,15 +246,7 @@ final class RetailerOffer
                 throw new \InvalidArgumentException("Value for 'notPublishableReasons' is not an array in data array");
             }
 
-            $notPublishableReasons = [];
-
-            foreach ($data['notPublishableReasons'] as $__value) {
-                if (! \is_array($data['notPublishableReasons'])) {
-                    throw new \InvalidArgumentException("Key 'notPublishableReasons' in data array or is not an array of arrays");
-                }
-
-                $notPublishableReasons[] = NotPublishableReasons::fromArray($__value);
-            }
+            $notPublishableReasons = NotPublishableReasons::fromArray($data['notPublishableReasons']);
         } else {
             $notPublishableReasons = null;
         }
@@ -289,7 +281,7 @@ final class RetailerOffer
             'ean' => $this->ean->toString(),
             'referenceCode' => $this->referenceCode->toString(),
             'onHoldByRetailer' => $this->onHoldByRetailer,
-            'unknownProductTitle' => null === $this->unknownProductTitle ? null : $this->unknownProductTitle->toString(),
+            'unknownProductTitle' => null === $this->unknownProductTitle ? null : null === $this->unknownProductTitle ? null : $this->unknownProductTitle->toString(),
             'pricing' => $this->pricing->toArray(),
             'stock' => $this->stock->toArray(),
             'fulfilment' => $this->fulfilment->toArray(),

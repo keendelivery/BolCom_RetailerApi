@@ -24,7 +24,7 @@ final class OrderItem
     private $fulfilmentMethod;
     private $selectedDeliveryWindow;
 
-    public function __construct(OrderItemId $orderItemId, string $offerReference = null, \BolCom\RetailerApi\Model\Offer\Ean $ean, string $title, Quantity $quantity, \BolCom\RetailerApi\Model\CurrencyAmount $offerPrice, \BolCom\RetailerApi\Model\Offer\OfferId $offerId, \BolCom\RetailerApi\Model\CurrencyAmount $transactionFee, \BolCom\RetailerApi\Model\Date $latestDeliveryDate, \BolCom\RetailerApi\Model\Offer\Condition $offerCondition, bool $cancelRequest, \BolCom\RetailerApi\Model\Offer\FulfilmentMethod $fulfilmentMethod, SelectedDeliveryWindow $selectedDeliveryWindow = null)
+    public function __construct(OrderItemId $orderItemId, ?string $offerReference, \BolCom\RetailerApi\Model\Offer\Ean $ean, string $title, Quantity $quantity, \BolCom\RetailerApi\Model\CurrencyAmount $offerPrice, \BolCom\RetailerApi\Model\Offer\OfferId $offerId, \BolCom\RetailerApi\Model\CurrencyAmount $transactionFee, ?\BolCom\RetailerApi\Model\Date $latestDeliveryDate, \BolCom\RetailerApi\Model\Offer\Condition $offerCondition, bool $cancelRequest, \BolCom\RetailerApi\Model\Offer\FulfilmentMethod $fulfilmentMethod, ?SelectedDeliveryWindow $selectedDeliveryWindow)
     {
         $this->orderItemId = $orderItemId;
         $this->offerReference = $offerReference;
@@ -46,7 +46,7 @@ final class OrderItem
         return $this->orderItemId;
     }
 
-    public function offerReference()
+    public function offerReference(): ?string
     {
         return $this->offerReference;
     }
@@ -81,7 +81,7 @@ final class OrderItem
         return $this->transactionFee;
     }
 
-    public function latestDeliveryDate(): \BolCom\RetailerApi\Model\Date
+    public function latestDeliveryDate(): ?\BolCom\RetailerApi\Model\Date
     {
         return $this->latestDeliveryDate;
     }
@@ -101,7 +101,7 @@ final class OrderItem
         return $this->fulfilmentMethod;
     }
 
-    public function selectedDeliveryWindow()
+    public function selectedDeliveryWindow(): ?SelectedDeliveryWindow
     {
         return $this->selectedDeliveryWindow;
     }
@@ -111,7 +111,7 @@ final class OrderItem
         return new self($orderItemId, $this->offerReference, $this->ean, $this->title, $this->quantity, $this->offerPrice, $this->offerId, $this->transactionFee, $this->latestDeliveryDate, $this->offerCondition, $this->cancelRequest, $this->fulfilmentMethod, $this->selectedDeliveryWindow);
     }
 
-    public function withOfferReference(string $offerReference = null): OrderItem
+    public function withOfferReference(?string $offerReference): OrderItem
     {
         return new self($this->orderItemId, $offerReference, $this->ean, $this->title, $this->quantity, $this->offerPrice, $this->offerId, $this->transactionFee, $this->latestDeliveryDate, $this->offerCondition, $this->cancelRequest, $this->fulfilmentMethod, $this->selectedDeliveryWindow);
     }
@@ -146,7 +146,7 @@ final class OrderItem
         return new self($this->orderItemId, $this->offerReference, $this->ean, $this->title, $this->quantity, $this->offerPrice, $this->offerId, $transactionFee, $this->latestDeliveryDate, $this->offerCondition, $this->cancelRequest, $this->fulfilmentMethod, $this->selectedDeliveryWindow);
     }
 
-    public function withLatestDeliveryDate(\BolCom\RetailerApi\Model\Date $latestDeliveryDate): OrderItem
+    public function withLatestDeliveryDate(?\BolCom\RetailerApi\Model\Date $latestDeliveryDate): OrderItem
     {
         return new self($this->orderItemId, $this->offerReference, $this->ean, $this->title, $this->quantity, $this->offerPrice, $this->offerId, $this->transactionFee, $latestDeliveryDate, $this->offerCondition, $this->cancelRequest, $this->fulfilmentMethod, $this->selectedDeliveryWindow);
     }
@@ -166,7 +166,7 @@ final class OrderItem
         return new self($this->orderItemId, $this->offerReference, $this->ean, $this->title, $this->quantity, $this->offerPrice, $this->offerId, $this->transactionFee, $this->latestDeliveryDate, $this->offerCondition, $this->cancelRequest, $fulfilmentMethod, $this->selectedDeliveryWindow);
     }
 
-    public function withSelectedDeliveryWindow(SelectedDeliveryWindow $selectedDeliveryWindow = null): OrderItem
+    public function withSelectedDeliveryWindow(?SelectedDeliveryWindow $selectedDeliveryWindow): OrderItem
     {
         return new self($this->orderItemId, $this->offerReference, $this->ean, $this->title, $this->quantity, $this->offerPrice, $this->offerId, $this->transactionFee, $this->latestDeliveryDate, $this->offerCondition, $this->cancelRequest, $this->fulfilmentMethod, $selectedDeliveryWindow);
     }
@@ -225,11 +225,15 @@ final class OrderItem
 
         $transactionFee = \BolCom\RetailerApi\Model\CurrencyAmount::fromScalar($data['transactionFee']);
 
-        if (! isset($data['latestDeliveryDate']) || ! \is_string($data['latestDeliveryDate'])) {
-            throw new \InvalidArgumentException("Key 'latestDeliveryDate' is missing in data array or is not a string");
-        }
+        if (isset($data['latestDeliveryDate'])) {
+            if (! \is_string($data['latestDeliveryDate'])) {
+                throw new \InvalidArgumentException("Value for 'latestDeliveryDate' is not a string in data array");
+            }
 
-        $latestDeliveryDate = \BolCom\RetailerApi\Model\Date::fromString($data['latestDeliveryDate']);
+            $latestDeliveryDate = \BolCom\RetailerApi\Model\Date::fromString($data['latestDeliveryDate']);
+        } else {
+            $latestDeliveryDate = null;
+        }
 
         if (! isset($data['offerCondition']) || ! \is_string($data['offerCondition'])) {
             throw new \InvalidArgumentException("Key 'offerCondition' is missing in data array or is not a string");

@@ -10,13 +10,13 @@ namespace BolCom\RetailerApi\Model\Inventory;
 
 final class Stock
 {
-    const OPTIONS = [
+    public const OPTIONS = [
         'SUFFICIENT' => 'sufficient',
         'INSUFFICIENT' => 'insufficient',
     ];
 
-    const SUFFICIENT = 'sufficient';
-    const INSUFFICIENT = 'insufficient';
+    public const SUFFICIENT = 'sufficient';
+    public const INSUFFICIENT = 'insufficient';
 
     private $name;
     private $value;

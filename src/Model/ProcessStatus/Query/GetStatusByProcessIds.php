@@ -12,7 +12,7 @@ final class GetStatusByProcessIds extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\ProcessStatus\Query\GetStatusByProcessIds';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\ProcessStatus\Query\GetStatusByProcessIds';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -25,7 +25,7 @@ final class GetStatusByProcessIds extends \Prooph\Common\Messaging\Query
     }
 
         /**
-     * @param int[]|null $ids
+     * @param int[] $ids
      */
 public static function with(int ...$ids): GetStatusByProcessIds
     {
@@ -34,7 +34,7 @@ public static function with(int ...$ids): GetStatusByProcessIds
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['ids']) || ! \is_array($payload['ids'])) {
             throw new \InvalidArgumentException("Key 'ids' is missing in payload or is not an array");

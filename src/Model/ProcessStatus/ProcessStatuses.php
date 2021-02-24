@@ -13,7 +13,7 @@ final class ProcessStatuses
     private $processStatuses;
 
     /**
-     * @param \BolCom\RetailerApi\Model\ProcessStatus\ProcessStatus[]|null $processStatuses
+     * @param \BolCom\RetailerApi\Model\ProcessStatus\ProcessStatus[] $processStatuses
      */
     public function __construct(ProcessStatus ...$processStatuses)
     {
@@ -29,7 +29,7 @@ final class ProcessStatuses
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\ProcessStatus\ProcessStatus[]|null $processStatuses
+     * @param \BolCom\RetailerApi\Model\ProcessStatus\ProcessStatus[] $processStatuses
      * @return \BolCom\RetailerApi\Model\ProcessStatus\ProcessStatuses
      */
     public function withProcessStatuses(array $processStatuses): ProcessStatuses

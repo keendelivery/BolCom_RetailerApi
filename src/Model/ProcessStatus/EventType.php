@@ -10,7 +10,7 @@ namespace BolCom\RetailerApi\Model\ProcessStatus;
 
 final class EventType
 {
-    const OPTIONS = [
+    public const OPTIONS = [
         'CREATE_OFFER' => 'CREATE_OFFER',
         'CONFIRM_SHIPMENT' => 'CONFIRM_SHIPMENT',
         'CANCEL_ORDER' => 'CANCEL_ORDER',
@@ -23,16 +23,16 @@ final class EventType
         'UPDATE_OFFER_STOCK' => 'UPDATE_OFFER_STOCK',
     ];
 
-    const CREATE_OFFER = 'CREATE_OFFER';
-    const CONFIRM_SHIPMENT = 'CONFIRM_SHIPMENT';
-    const CANCEL_ORDER = 'CANCEL_ORDER';
-    const CHANGE_TRANSPORT = 'CHANGE_TRANSPORT';
-    const HANDLE_RETURN_ITEM = 'HANDLE_RETURN_ITEM';
-    const CREATE_INBOUND = 'CREATE_INBOUND';
-    const DELETE_OFFER = 'DELETE_OFFER';
-    const UPDATE_OFFER = 'UPDATE_OFFER';
-    const UPDATE_OFFER_PRICE = 'UPDATE_OFFER_PRICE';
-    const UPDATE_OFFER_STOCK = 'UPDATE_OFFER_STOCK';
+    public const CREATE_OFFER = 'CREATE_OFFER';
+    public const CONFIRM_SHIPMENT = 'CONFIRM_SHIPMENT';
+    public const CANCEL_ORDER = 'CANCEL_ORDER';
+    public const CHANGE_TRANSPORT = 'CHANGE_TRANSPORT';
+    public const HANDLE_RETURN_ITEM = 'HANDLE_RETURN_ITEM';
+    public const CREATE_INBOUND = 'CREATE_INBOUND';
+    public const DELETE_OFFER = 'DELETE_OFFER';
+    public const UPDATE_OFFER = 'UPDATE_OFFER';
+    public const UPDATE_OFFER_PRICE = 'UPDATE_OFFER_PRICE';
+    public const UPDATE_OFFER_STOCK = 'UPDATE_OFFER_STOCK';
 
     private $name;
     private $value;

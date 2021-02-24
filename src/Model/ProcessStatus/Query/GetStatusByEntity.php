@@ -12,7 +12,7 @@ final class GetStatusByEntity extends \Prooph\Common\Messaging\Query
 {
     use \Prooph\Common\Messaging\PayloadTrait;
 
-    const MESSAGE_NAME = 'BolCom\RetailerApi\Model\ProcessStatus\Query\GetStatusByEntity';
+    public const MESSAGE_NAME = 'BolCom\RetailerApi\Model\ProcessStatus\Query\GetStatusByEntity';
 
     protected $messageName = self::MESSAGE_NAME;
 
@@ -40,7 +40,7 @@ final class GetStatusByEntity extends \Prooph\Common\Messaging\Query
         ]);
     }
 
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         if (! isset($payload['entityId']) || ! \is_string($payload['entityId'])) {
             throw new \InvalidArgumentException("Key 'entityId' is missing in payload or is not a string");

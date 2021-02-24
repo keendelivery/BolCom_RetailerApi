@@ -17,7 +17,7 @@ final class InboundList
     /**
      * @param int $totalCount
      * @param int $totalPageCount
-     * @param \BolCom\RetailerApi\Model\Inbound\Inbound[]|null $inbounds
+     * @param \BolCom\RetailerApi\Model\Inbound\Inbound[] $inbounds
      */
     public function __construct(int $totalCount, int $totalPageCount, array $inbounds)
     {
@@ -61,7 +61,7 @@ final class InboundList
     }
 
     /**
-     * @param \BolCom\RetailerApi\Model\Inbound\Inbound[]|null $inbounds
+     * @param \BolCom\RetailerApi\Model\Inbound\Inbound[] $inbounds
      * @return \BolCom\RetailerApi\Model\Inbound\InboundList
      */
     public function withInbounds(array $inbounds): InboundList
